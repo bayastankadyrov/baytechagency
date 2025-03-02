@@ -29,6 +29,22 @@ const Index = () => {
     return 'light';
   });
 
+  // Add language state
+  const [language, setLanguage] = useState<'en' | 'ru'>(() => {
+    if (typeof window !== 'undefined') {
+      // Check for stored preference
+      const storedLanguage = localStorage.getItem('language') as 'en' | 'ru' | null;
+      if (storedLanguage) {
+        return storedLanguage;
+      }
+      
+      // Check browser language
+      const browserLang = navigator.language.startsWith('ru') ? 'ru' : 'en';
+      return browserLang;
+    }
+    return 'en';
+  });
+
   // Update theme when it changes
   useEffect(() => {
     const root = window.document.documentElement;
@@ -39,6 +55,12 @@ const Index = () => {
     }
     localStorage.setItem('theme', theme);
   }, [theme]);
+
+  // Update language when it changes
+  useEffect(() => {
+    localStorage.setItem('language', language);
+    document.documentElement.lang = language;
+  }, [language]);
 
   // Listen for system preference changes
   useEffect(() => {
@@ -94,18 +116,23 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground antialiased smooth-scroll transition-colors duration-300">
-      <NavBar theme={theme} setTheme={setTheme} />
+      <NavBar 
+        theme={theme} 
+        setTheme={setTheme} 
+        language={language} 
+        setLanguage={setLanguage} 
+      />
       <main>
-        <Hero />
-        <Portfolio />
-        <Services />
-        <WhyChooseUs />
-        <PackageDiscounts />
-        <WorkProcess />
-        <About />
-        <Contact />
+        <Hero language={language} />
+        <Portfolio language={language} />
+        <Services language={language} />
+        <WhyChooseUs language={language} />
+        <PackageDiscounts language={language} />
+        <WorkProcess language={language} />
+        <About language={language} />
+        <Contact language={language} />
       </main>
-      <Footer />
+      <Footer language={language} />
     </div>
   );
 };
