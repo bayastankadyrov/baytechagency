@@ -5,6 +5,9 @@ import Hero from "@/components/Hero";
 import Portfolio from "@/components/Portfolio";
 import Services from "@/components/Services";
 import About from "@/components/About";
+import WhyChooseUs from "@/components/WhyChooseUs";
+import PackageDiscounts from "@/components/PackageDiscounts";
+import WorkProcess from "@/components/WorkProcess";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
@@ -57,6 +60,9 @@ const Index = () => {
         <Hero />
         <Portfolio />
         <Services />
+        <WhyChooseUs />
+        <PackageDiscounts />
+        <WorkProcess />
         <About />
         <Contact />
       </main>
