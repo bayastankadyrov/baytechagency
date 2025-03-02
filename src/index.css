@@ -16,7 +16,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 260 10% 3.9%;
     
-    --primary: 260 75% 60%;
+    --primary: 260 10% 40%;
     --primary-foreground: 0 0% 98%;
     
     --secondary: 260 30% 96%;
@@ -25,15 +25,15 @@
     --muted: 260 20% 96%;
     --muted-foreground: 260 10% 46.1%;
     
-    --accent: 260 75% 95%;
-    --accent-foreground: 260 75% 40%;
+    --accent: 260 15% 95%;
+    --accent-foreground: 260 10% 40%;
     
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
 
     --border: 260 20% 90%;
     --input: 260 20% 90%;
-    --ring: 260 75% 60%;
+    --ring: 260 10% 40%;
     
     --radius: 0.5rem;
   }
@@ -51,20 +51,20 @@
     --primary: 260 75% 60%;
     --primary-foreground: 0 0% 98%;
  
-    --secondary: 260 15% 18%;
+    --secondary: 260 20% 18%;
     --secondary-foreground: 0 0% 98%;
  
     --muted: 260 15% 18%;
     --muted-foreground: 260 15% 65%;
  
-    --accent: 260 15% 18%;
+    --accent: 260 30% 25%;
     --accent-foreground: 0 0% 98%;
  
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
  
     --border: 260 15% 20%;
-    --input: 260 15% 20%;
+    --input: 260 20% 20%;
     --ring: 260 75% 60%;
   }
 
@@ -121,7 +121,7 @@
   }
 
   .glass-panel {
-    @apply backdrop-blur-md bg-white/70 dark:bg-black/30 border border-white/10 shadow-sm;
+    @apply backdrop-blur-md bg-white/70 dark:bg-black/30 border border-white/10 shadow-sm dark:shadow-purple-900/20;
   }
 
   .service-card {
@@ -129,7 +129,7 @@
   }
 
   .service-card:hover {
-    @apply border-primary/30 dark:border-primary/40 translate-y-[-4px] shadow-primary/5;
+    @apply border-primary/30 dark:border-primary/40 translate-y-[-4px] shadow-primary/5 dark:shadow-purple-500/10;
   }
 
   .image-container {

@@ -31,12 +31,12 @@ const WhyChooseUs = () => {
   ];
 
   return (
-    <section id="why-choose-us" className="section-container bg-primary/5">
+    <section id="why-choose-us" className="section-container bg-primary/5 dark:bg-primary/10">
       <div className="text-center mb-16">
         <AnimatedText
           text="Why Choose Us"
           tag="h2"
-          className="section-heading"
+          className="section-heading dark:text-white"
           animation="slide-up"
         />
         <AnimatedText
@@ -52,16 +52,16 @@ const WhyChooseUs = () => {
         {reasons.map((reason, index) => (
           <div 
             key={index} 
-            className="fade-in-section bg-white dark:bg-black/10 border border-primary/10 p-6 rounded-xl shadow-sm hover:shadow-md transition-all"
+            className="fade-in-section bg-white dark:bg-black/10 border border-primary/10 dark:border-primary/20 p-6 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 hover:translate-y-[-4px]"
           >
             <div className="flex gap-4 items-start">
               <div className="flex-shrink-0 mt-1">
-                <div className="bg-primary/10 p-2 rounded-full">
-                  <Check className="h-5 w-5 text-primary" />
+                <div className="bg-primary/10 dark:bg-primary/20 p-2 rounded-full">
+                  <Check className="h-5 w-5 text-primary dark:text-primary" />
                 </div>
               </div>
               <div>
-                <h3 className="text-lg font-semibold font-display mb-2">{reason.title}</h3>
+                <h3 className="text-lg font-semibold font-display mb-2 dark:text-white">{reason.title}</h3>
                 <p className="text-muted-foreground">{reason.description}</p>
               </div>
             </div>
