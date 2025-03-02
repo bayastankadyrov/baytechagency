@@ -1,100 +1,50 @@
 
 import AnimatedText from "./AnimatedText";
-import { PencilRuler, Globe, PieChart, BadgePercent, Sparkles } from "lucide-react";
+import { PencilRuler, Globe, PieChart, Package, BadgePercent, Sparkles } from "lucide-react";
 
-type PackageDiscountsProps = {
-  language: 'en' | 'ru';
-};
-
-const PackageDiscounts = ({ language }: PackageDiscountsProps) => {
-  const translations = {
-    en: {
-      title: "Package Discounts",
-      subtitle: "Save more when you bundle our services together",
-      packages: [
-        {
-          title: "Starter Bundle",
-          discount: "10% Off",
-          services: ["Brand Identity", "Website Design", "Social Media Kit"],
-          description: "Perfect for new businesses looking to establish their online presence.",
-          icon: <PencilRuler className="h-6 w-6 text-primary" />,
-          price: "$1,999",
-          originalPrice: "$2,220"
-        },
-        {
-          title: "Growth Package",
-          discount: "15% Off",
-          services: ["Brand Identity", "Website Design", "Social Media Kit", "SEO Optimization", "Content Strategy"],
-          description: "Ideal for businesses looking to expand their digital footprint and reach new customers.",
-          icon: <Globe className="h-6 w-6 text-primary" />,
-          price: "$3,399",
-          originalPrice: "$3,999",
-          featured: true
-        },
-        {
-          title: "Enterprise Solution",
-          discount: "20% Off",
-          services: ["Brand Identity", "Website Design", "Social Media Kit", "SEO Optimization", "Content Strategy", "UI/UX Design", "Analytics Dashboard"],
-          description: "Comprehensive solution for established businesses aiming for digital transformation.",
-          icon: <PieChart className="h-6 w-6 text-primary" />,
-          price: "$5,599",
-          originalPrice: "$6,999"
-        }
-      ],
-      popular: "Popular",
-      getStarted: "Get Started"
+const PackageDiscounts = () => {
+  const packages = [
+    {
+      title: "Starter Bundle",
+      discount: "10% Off",
+      services: ["Brand Identity", "Website Design", "Social Media Kit"],
+      description: "Perfect for new businesses looking to establish their online presence.",
+      icon: <PencilRuler className="h-6 w-6 text-primary" />,
+      price: "$1,999",
+      originalPrice: "$2,220"
     },
-    ru: {
-      title: "Пакетные Скидки",
-      subtitle: "Экономьте больше при объединении наших услуг",
-      packages: [
-        {
-          title: "Стартовый Пакет",
-          discount: "10% Скидка",
-          services: ["Айдентика Бренда", "Дизайн Веб-сайта", "Набор для Социальных Медиа"],
-          description: "Идеально для новых бизнесов, стремящихся установить свое онлайн-присутствие.",
-          icon: <PencilRuler className="h-6 w-6 text-primary" />,
-          price: "₽149,990",
-          originalPrice: "₽166,500"
-        },
-        {
-          title: "Пакет Роста",
-          discount: "15% Скидка",
-          services: ["Айдентика Бренда", "Дизайн Веб-сайта", "Набор для Социальных Медиа", "SEO Оптимизация", "Контент-Стратегия"],
-          description: "Идеально для бизнесов, стремящихся расширить свой цифровой след и достичь новых клиентов.",
-          icon: <Globe className="h-6 w-6 text-primary" />,
-          price: "₽254,990",
-          originalPrice: "₽299,990",
-          featured: true
-        },
-        {
-          title: "Корпоративное Решение",
-          discount: "20% Скидка",
-          services: ["Айдентика Бренда", "Дизайн Веб-сайта", "Набор для Социальных Медиа", "SEO Оптимизация", "Контент-Стратегия", "UI/UX Дизайн", "Аналитическая Панель"],
-          description: "Комплексное решение для устоявшихся бизнесов, стремящихся к цифровой трансформации.",
-          icon: <PieChart className="h-6 w-6 text-primary" />,
-          price: "₽419,990",
-          originalPrice: "₽524,990"
-        }
-      ],
-      popular: "Популярный",
-      getStarted: "Начать"
+    {
+      title: "Growth Package",
+      discount: "15% Off",
+      services: ["Brand Identity", "Website Design", "Social Media Kit", "SEO Optimization", "Content Strategy"],
+      description: "Ideal for businesses looking to expand their digital footprint and reach new customers.",
+      icon: <Globe className="h-6 w-6 text-primary" />,
+      price: "$3,399",
+      originalPrice: "$3,999",
+      featured: true
+    },
+    {
+      title: "Enterprise Solution",
+      discount: "20% Off",
+      services: ["Brand Identity", "Website Design", "Social Media Kit", "SEO Optimization", "Content Strategy", "UI/UX Design", "Analytics Dashboard"],
+      description: "Comprehensive solution for established businesses aiming for digital transformation.",
+      icon: <PieChart className="h-6 w-6 text-primary" />,
+      price: "$5,599",
+      originalPrice: "$6,999"
     }
-  };
-
-  const t = translations[language];
+  ];
 
   return (
     <section id="package-discounts" className="section-container">
       <div className="text-center mb-16">
         <AnimatedText
-          text={t.title}
+          text="Package Discounts"
           tag="h2"
           className="section-heading"
           animation="slide-up"
         />
         <AnimatedText
-          text={t.subtitle}
+          text="Save more when you bundle our services together"
           tag="p"
           className="section-subheading"
           animation="fade"
@@ -103,7 +53,7 @@ const PackageDiscounts = ({ language }: PackageDiscountsProps) => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-6 lg:gap-8">
-        {t.packages.map((pkg, index) => (
+        {packages.map((pkg, index) => (
           <div 
             key={index} 
             className={`fade-in-section relative overflow-hidden rounded-2xl border ${pkg.featured ? 'border-primary shadow-lg ring-2 ring-primary/20' : 'border-border shadow-sm'} bg-card p-6 transition-all duration-300 hover:shadow-md`}
@@ -111,7 +61,7 @@ const PackageDiscounts = ({ language }: PackageDiscountsProps) => {
           >
             {pkg.featured && (
               <div className="absolute -right-10 top-6 rotate-45 bg-primary px-10 py-1 text-xs font-medium text-white">
-                {t.popular}
+                Popular
               </div>
             )}
             
@@ -144,7 +94,7 @@ const PackageDiscounts = ({ language }: PackageDiscountsProps) => {
             </div>
             
             <button className={`w-full rounded-lg ${pkg.featured ? 'bg-primary text-white hover:bg-primary/90' : 'bg-secondary text-foreground hover:bg-secondary/80'} py-2 font-medium transition-colors`}>
-              {t.getStarted}
+              Get Started
             </button>
           </div>
         ))}
