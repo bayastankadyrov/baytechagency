@@ -134,7 +134,7 @@
   }
   
   .project-card {
-    @apply bg-white dark:bg-black/20 border border-gray-100 dark:border-gray-800 rounded-2xl overflow-hidden transition-all duration-500 hover:shadow-xl;
+    @apply group bg-white dark:bg-black/20 border border-gray-100 dark:border-gray-800 rounded-2xl overflow-hidden transition-all duration-500 hover:shadow-xl;
   }
   
   .project-link {

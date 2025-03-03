@@ -166,10 +166,8 @@ const Portfolio = ({ language }: PortfolioProps) => {
               key={filter}
               onClick={() => setActiveFilter(filter)}
               className={cn(
-                "px-6 py-2.5 rounded-full text-sm font-medium capitalize transition-all duration-300",
-                activeFilter === filter
-                  ? "bg-primary text-primary-foreground"
-                  : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                "portfolio-filter-btn",
+                activeFilter === filter ? "active" : "inactive"
               )}
               style={{ animationDelay: `${index * 100}ms` }}
             >
@@ -184,7 +182,7 @@ const Portfolio = ({ language }: PortfolioProps) => {
           <div
             key={project.id}
             className={cn(
-              "group bg-white dark:bg-black/20 border border-gray-100 dark:border-gray-800 rounded-2xl overflow-hidden transition-all duration-500 hover:shadow-xl",
+              "project-card",
               animated ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             )}
             style={{ transitionDelay: `${index * 100}ms` }}
@@ -207,7 +205,7 @@ const Portfolio = ({ language }: PortfolioProps) => {
               <div className="mt-4">
                 <a
                   href="#"
-                  className="text-sm font-medium text-primary inline-flex items-center gap-1 transition-all duration-300 hover:gap-2"
+                  className="project-link"
                 >
                   <span>{t.viewDetails}</span>
                   <ArrowRight className="h-4 w-4" />
