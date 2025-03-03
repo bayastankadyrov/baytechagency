@@ -1,8 +1,39 @@
 
 import { cn } from "@/lib/utils";
 
-const Footer = () => {
+type FooterProps = {
+  language: 'en' | 'ru';
+};
+
+const Footer = ({ language }: FooterProps) => {
   const currentYear = new Date().getFullYear();
+  
+  const translations = {
+    en: {
+      studioDescription: "Creating exceptional digital experiences that elevate brands and drive results.",
+      services: "Services",
+      servicesList: ["Brand Identity", "Web Design", "Digital Marketing", "Mobile Design", "Photography"],
+      company: "Company",
+      companyList: ["About Us", "Careers", "Blog", "Resources", "Contact"],
+      legal: "Legal",
+      legalList: ["Privacy Policy", "Terms of Service", "Cookie Policy"],
+      copyright: `© ${currentYear} Design Studio. All rights reserved.`,
+      tagline: "Crafted with precision and care."
+    },
+    ru: {
+      studioDescription: "Создаем исключительный цифровой опыт, который возвышает бренды и приносит результаты.",
+      services: "Услуги",
+      servicesList: ["Айдентика Бренда", "Веб-Дизайн", "Цифровой Маркетинг", "Мобильный Дизайн", "Фотография"],
+      company: "Компания",
+      companyList: ["О Нас", "Карьера", "Блог", "Ресурсы", "Контакты"],
+      legal: "Юридическая Информация",
+      legalList: ["Политика Конфиденциальности", "Условия Обслуживания", "Политика Использования Файлов Cookie"],
+      copyright: `© ${currentYear} Дизайн-Студия. Все права защищены.`,
+      tagline: "Создано с точностью и заботой."
+    }
+  };
+
+  const t = translations[language];
   
   return (
     <footer className="py-16 px-4 md:px-6 bg-gray-50 dark:bg-gray-900">
@@ -11,7 +42,7 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-display font-bold mb-4">Design Studio</h3>
             <p className="text-muted-foreground mb-6 max-w-xs">
-              Creating exceptional digital experiences that elevate brands and drive results.
+              {t.studioDescription}
             </p>
             <div className="flex space-x-4">
               <a href="#" className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-primary-foreground transition-colors">
@@ -35,43 +66,41 @@ const Footer = () => {
           </div>
           
           <div>
-            <h3 className="text-sm font-bold uppercase tracking-wider text-muted-foreground mb-4">Services</h3>
+            <h3 className="text-sm font-bold uppercase tracking-wider text-muted-foreground mb-4">{t.services}</h3>
             <ul className="space-y-3">
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Brand Identity</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Web Design</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Digital Marketing</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Mobile Design</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Photography</a></li>
+              {t.servicesList.map((service, index) => (
+                <li key={index}><a href="#" className="text-muted-foreground hover:text-primary transition-colors">{service}</a></li>
+              ))}
             </ul>
           </div>
           
           <div>
-            <h3 className="text-sm font-bold uppercase tracking-wider text-muted-foreground mb-4">Company</h3>
+            <h3 className="text-sm font-bold uppercase tracking-wider text-muted-foreground mb-4">{t.company}</h3>
             <ul className="space-y-3">
-              <li><a href="#about" className="text-muted-foreground hover:text-primary transition-colors">About Us</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Careers</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Blog</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Resources</a></li>
-              <li><a href="#contact" className="text-muted-foreground hover:text-primary transition-colors">Contact</a></li>
+              <li><a href="#about" className="text-muted-foreground hover:text-primary transition-colors">{t.companyList[0]}</a></li>
+              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">{t.companyList[1]}</a></li>
+              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">{t.companyList[2]}</a></li>
+              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">{t.companyList[3]}</a></li>
+              <li><a href="#contact" className="text-muted-foreground hover:text-primary transition-colors">{t.companyList[4]}</a></li>
             </ul>
           </div>
           
           <div>
-            <h3 className="text-sm font-bold uppercase tracking-wider text-muted-foreground mb-4">Legal</h3>
+            <h3 className="text-sm font-bold uppercase tracking-wider text-muted-foreground mb-4">{t.legal}</h3>
             <ul className="space-y-3">
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Privacy Policy</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Terms of Service</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Cookie Policy</a></li>
+              {t.legalList.map((item, index) => (
+                <li key={index}><a href="#" className="text-muted-foreground hover:text-primary transition-colors">{item}</a></li>
+              ))}
             </ul>
           </div>
         </div>
         
         <div className="pt-8 border-t border-gray-200 dark:border-gray-800 flex flex-col md:flex-row justify-between items-center">
           <p className="text-muted-foreground text-sm">
-            © {currentYear} Design Studio. All rights reserved.
+            {t.copyright}
           </p>
           <p className="text-muted-foreground text-sm mt-2 md:mt-0">
-            Crafted with precision and care.
+            {t.tagline}
           </p>
         </div>
       </div>
