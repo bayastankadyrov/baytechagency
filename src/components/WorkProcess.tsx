@@ -85,7 +85,7 @@ const WorkProcess = ({ language }: WorkProcessProps) => {
   const t = translations[language];
 
   return (
-    <section id="work-process" className="section-container bg-gradient-to-b from-primary/5 to-background">
+    <section id="work-process" className="section-container bg-gradient-to-b from-primary/5 to-background py-20">
       <div className="text-center mb-16">
         <AnimatedText
           text={t.title}
@@ -96,7 +96,7 @@ const WorkProcess = ({ language }: WorkProcessProps) => {
         <AnimatedText
           text={t.subtitle}
           tag="p"
-          className="section-subheading"
+          className="section-subheading max-w-3xl mx-auto"
           animation="fade"
           delay={200}
         />

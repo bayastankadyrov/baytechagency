@@ -37,7 +37,7 @@ const Portfolio = ({ language }: PortfolioProps) => {
   const projects: Project[] = [
     {
       id: 1,
-      title: "Minimalist E-commerce Platform",
+      title: language === 'en' ? "Minimalist E-commerce Platform" : "Минималистичная платформа электронной коммерции",
       category: language === 'en' ? "web design" : "веб-дизайн",
       imageUrl: "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
       description: language === 'en' 
@@ -99,14 +99,14 @@ const Portfolio = ({ language }: PortfolioProps) => {
       }
       setAnimated(true);
     }, 300);
-  }, [activeFilter, filters]);
+  }, [activeFilter, filters, projects]);
 
   useEffect(() => {
     setAnimated(true);
   }, []);
 
   return (
-    <section id="portfolio" className="section-container">
+    <section id="portfolio" className="section-container py-20">
       <div className="text-center mb-16">
         <AnimatedText
           text={t.heading}
@@ -117,7 +117,7 @@ const Portfolio = ({ language }: PortfolioProps) => {
         <AnimatedText
           text={t.subheading}
           tag="p"
-          className="section-subheading"
+          className="section-subheading max-w-3xl mx-auto"
           animation="slide-up"
           delay={300}
         />
@@ -141,7 +141,7 @@ const Portfolio = ({ language }: PortfolioProps) => {
         </div>
       </div>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-7xl mx-auto">
         {filteredProjects.map((project, index) => (
           <div
             key={project.id}
