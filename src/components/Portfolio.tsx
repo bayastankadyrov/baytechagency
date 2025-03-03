@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import AnimatedText from "./AnimatedText";
 import AnimatedImage from "./AnimatedImage";
+import { ArrowRight } from "lucide-react";
 
 type Project = {
   id: number;
@@ -52,7 +53,11 @@ const projects: Project[] = [
 
 const filters = ["all", "web design", "branding", "web app", "mobile app", "marketing"];
 
-const Portfolio = () => {
+interface PortfolioProps {
+  language?: string;
+}
+
+const Portfolio = ({ language = "en" }: PortfolioProps) => {
   const [activeFilter, setActiveFilter] = useState("all");
   const [filteredProjects, setFilteredProjects] = useState<Project[]>(projects);
   const [animated, setAnimated] = useState(false);
@@ -74,22 +79,19 @@ const Portfolio = () => {
     setAnimated(true);
   }, []);
 
+  const getCategoryLabel = (category: string) => {
+    return category.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+  };
+
   return (
-    <section id="portfolio" className="section-container">
+    <section id="portfolio" className="py-20 px-4 md:px-8 lg:px-16 max-w-7xl mx-auto">
       <div className="text-center mb-16">
-        <AnimatedText
-          text="Our Portfolio"
-          tag="h2"
-          className="section-heading"
-          animation="slide-up"
-        />
-        <AnimatedText
-          text="Explore our diverse range of projects that showcase our capabilities and creative approach."
-          tag="p"
-          className="section-subheading"
-          animation="slide-up"
-          delay={300}
-        />
+        <h2 className="text-4xl md:text-5xl font-bold font-display mb-4">
+          Our Portfolio
+        </h2>
+        <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-12">
+          Explore our diverse range of projects that showcase our capabilities and creative approach.
+        </p>
         
         <div className="flex flex-wrap justify-center gap-2 mt-8">
           {filters.map((filter, index) => (
@@ -100,11 +102,11 @@ const Portfolio = () => {
                 "px-4 py-2 rounded-full text-sm font-medium capitalize transition-all duration-300",
                 activeFilter === filter
                   ? "bg-primary text-primary-foreground"
-                  : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                  : "bg-secondary/50 text-secondary-foreground hover:bg-secondary/80"
               )}
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              {filter}
+              {filter === "all" ? "All" : getCategoryLabel(filter)}
             </button>
           ))}
         </div>
@@ -131,7 +133,7 @@ const Portfolio = () => {
             </div>
             <div className="p-6">
               <span className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                {project.category}
+                {getCategoryLabel(project.category)}
               </span>
               <h3 className="text-xl font-display font-bold mt-2 mb-3">{project.title}</h3>
               <p className="text-muted-foreground text-sm">{project.description}</p>
@@ -141,20 +143,7 @@ const Portfolio = () => {
                   className="text-sm font-medium text-primary inline-flex items-center transition-all duration-300 hover:translate-x-1"
                 >
                   View project details
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-4 w-4 ml-1"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M14 5l7 7m0 0l-7 7m7-7H3"
-                    />
-                  </svg>
+                  <ArrowRight className="h-4 w-4 ml-1" />
                 </a>
               </div>
             </div>
