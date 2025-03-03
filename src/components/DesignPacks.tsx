@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import AnimatedText from "./AnimatedText";
 import AnimatedImage from "./AnimatedImage";
@@ -110,7 +109,7 @@ const DesignPacks = ({ language }: DesignPacksProps) => {
               <AnimatedImage
                 src={pack.imageUrl}
                 alt={pack.title}
-                className="w-full h-full object-cover transition-transform duration-500"
+                className="w-full h-full object-cover"
                 animation="blur"
                 delay={index * 100}
                 style={{ transform: hoveredPack === pack.id ? 'scale(1.05)' : 'scale(1)' }}

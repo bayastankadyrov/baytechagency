@@ -182,7 +182,7 @@ const Portfolio = ({ language }: PortfolioProps) => {
           <div
             key={project.id}
             className={cn(
-              "project-card",
+              "project-card group", // Added 'group' class here instead of in CSS
               animated ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             )}
             style={{ transitionDelay: `${index * 100}ms` }}
