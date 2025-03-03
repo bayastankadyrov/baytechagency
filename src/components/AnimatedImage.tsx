@@ -1,3 +1,4 @@
+
 import React from "react";
 import { cn } from "@/lib/utils";
 
@@ -5,9 +6,9 @@ interface AnimatedImageProps {
   src: string;
   alt: string;
   className?: string;
-  animation?: "fade" | "blur" | "slide-up";
+  animation?: "fade" | "blur" | "slide-up" | "scale";
   delay?: number;
-  style?: React.CSSProperties;  // Add this line
+  style?: React.CSSProperties;
 }
 
 const AnimatedImage: React.FC<AnimatedImageProps> = ({
@@ -29,6 +30,9 @@ const AnimatedImage: React.FC<AnimatedImageProps> = ({
       break;
     case "slide-up":
       animationClass = "animate-slide-up";
+      break;
+    case "scale":
+      animationClass = "animate-scale-in";
       break;
     default:
       animationClass = "animate-fade-in";

@@ -1,7 +1,8 @@
+
 import { useEffect, useState } from "react";
 import NavBar from "@/components/NavBar";
 import Hero from "@/components/Hero";
-import Portfolio from "@/components/Portfolio";
+import Portfolio from "@/components/portfolio";
 import Services from "@/components/Services";
 import About from "@/components/About";
 import WhyChooseUs from "@/components/WhyChooseUs";
