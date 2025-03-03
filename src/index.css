@@ -120,4 +120,24 @@
       opacity: 1;
     }
   }
+  
+  .portfolio-filter-btn {
+    @apply px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300;
+  }
+  
+  .portfolio-filter-btn.active {
+    @apply bg-primary text-primary-foreground;
+  }
+  
+  .portfolio-filter-btn.inactive {
+    @apply bg-secondary text-secondary-foreground hover:bg-secondary/80;
+  }
+  
+  .project-card {
+    @apply bg-white dark:bg-black/20 border border-gray-100 dark:border-gray-800 rounded-2xl overflow-hidden transition-all duration-500 hover:shadow-xl;
+  }
+  
+  .project-link {
+    @apply text-sm font-medium text-primary inline-flex items-center gap-1 transition-all duration-300 hover:gap-2;
+  }
 }
