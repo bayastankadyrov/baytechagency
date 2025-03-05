@@ -11,6 +11,7 @@ import WorkProcess from "@/components/WorkProcess";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import DesignPacks from "@/components/DesignPacks";
+import PaymentSection from "@/components/PaymentSection";
 
 const Index = () => {
   // Add theme state
@@ -130,6 +131,7 @@ const Index = () => {
         <WhyChooseUs language={language} />
         <DesignPacks language={language} />
         <PackageDiscounts language={language} />
+        <PaymentSection language={language} />
         <WorkProcess language={language} />
         <About language={language} />
         <Contact language={language} />

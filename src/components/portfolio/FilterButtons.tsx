@@ -1,5 +1,6 @@
 
 import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
 import AnimatedText from "../AnimatedText";
 
 type FilterButtonsProps = {
@@ -50,17 +51,23 @@ const FilterButtons = ({
   return (
     <div className="flex flex-wrap justify-center gap-3 mt-8">
       {filters.map((filter, index) => (
-        <button
+        <motion.button
           key={filter}
           onClick={() => setActiveFilter(filter)}
           className={cn(
-            "portfolio-filter-btn",
-            activeFilter === filter ? "active" : "inactive"
+            "px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300",
+            activeFilter === filter 
+              ? "bg-primary text-primary-foreground" 
+              : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
           )}
-          style={{ animationDelay: `${index * 100}ms` }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3, delay: index * 0.1 }}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
         >
           {getDisplayName(filter)}
-        </button>
+        </motion.button>
       ))}
     </div>
   );
