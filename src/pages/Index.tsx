@@ -9,6 +9,7 @@ import WorkProcess from "@/components/WorkProcess";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import DesignPacks from "@/components/DesignPacks";
+import Portfolio from "@/components/portfolio/Portfolio";
 
 const Index = () => {
   // Add theme state
@@ -123,6 +124,7 @@ const Index = () => {
       />
       <main>
         <Hero language={language} />
+        <Portfolio language={language} />
         <Services language={language} />
         <WhyChooseUs language={language} />
         <DesignPacks language={language} />

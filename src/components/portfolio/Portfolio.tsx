@@ -53,13 +53,13 @@ const Portfolio = ({ language }: PortfolioProps) => {
         <AnimatedText
           text={t.heading}
           tag="h2"
-          className="section-heading mb-4"
+          className="section-heading mb-4 text-3xl md:text-4xl lg:text-5xl font-display font-bold tracking-tight"
           animation="slide-up"
         />
         <AnimatedText
           text={t.subheading}
           tag="p"
-          className="section-subheading max-w-3xl mx-auto mb-12"
+          className="section-subheading max-w-3xl mx-auto mb-12 text-lg text-muted-foreground"
           animation="slide-up"
           delay={300}
         />

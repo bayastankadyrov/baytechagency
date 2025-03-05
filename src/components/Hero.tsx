@@ -1,6 +1,7 @@
 
 import { ArrowDown } from "lucide-react";
 import AnimatedText from "./AnimatedText";
+import { Button } from "./ui/button";
 
 type HeroProps = {
   language: 'en' | 'ru';
@@ -29,6 +30,13 @@ const Hero = ({ language }: HeroProps) => {
   const t = translations[language];
 
   const handleScrollDown = () => {
+    const portfolioSection = document.getElementById("portfolio");
+    if (portfolioSection) {
+      portfolioSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const handleViewWork = () => {
     const portfolioSection = document.getElementById("portfolio");
     if (portfolioSection) {
       portfolioSection.scrollIntoView({ behavior: "smooth" });
@@ -73,12 +81,13 @@ const Hero = ({ language }: HeroProps) => {
             >
               {t.getInTouch}
             </a>
-            <a 
-              href="#portfolio" 
+            <Button 
+              onClick={handleViewWork}
+              variant="secondary"
               className="px-6 py-3 rounded-full bg-secondary text-secondary-foreground font-medium transition-all duration-300 hover:bg-secondary/80"
             >
               {t.viewWork}
-            </a>
+            </Button>
           </div>
         </div>
       </div>

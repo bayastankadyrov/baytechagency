@@ -1,2 +1,5 @@
 
-export { default as ProjectCard } from './ProjectCard';
+export { default } from './Portfolio';
+export * from './FilterButtons';
+export * from './ProjectCard';
+export * from './portfolioData';
