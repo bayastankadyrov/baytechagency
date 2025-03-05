@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useToast } from "@/hooks/use-toast";
@@ -127,7 +126,7 @@ const Portfolio = ({
               <div className="mt-4 grid gap-6">
                 <div className="aspect-video overflow-hidden rounded-lg">
                   <AnimatedImage
-                    src={selectedProject.image}
+                    src={selectedProject.imageUrl}
                     alt={selectedProject.title}
                     className="w-full h-full object-cover"
                     animation="fade"
@@ -140,7 +139,7 @@ const Portfolio = ({
                   </h3>
                   <p className="text-muted-foreground">{selectedProject.description}</p>
                   
-                  {selectedProject.technologies && (
+                  {selectedProject.technologies && selectedProject.technologies.length > 0 && (
                     <div className="mt-4">
                       <h3 className="text-lg font-medium mb-2">
                         {language === 'en' ? 'Technologies' : 'Технологии'}
