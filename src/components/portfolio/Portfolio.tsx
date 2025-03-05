@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useToast } from "@/hooks/use-toast";
@@ -61,7 +62,7 @@ const Portfolio = ({
   };
   
   return (
-    <section id="portfolio" className="section-container py-20 bg-gradient-to-b from-slate-50/70 to-slate-100/90 dark:from-slate-900/30 dark:to-slate-800/40 rounded-lg shadow-sm">
+    <section id="portfolio" className="section-container py-20 my-20 bg-gradient-to-b from-slate-50/70 to-slate-100/90 dark:from-slate-900/30 dark:to-slate-800/40 rounded-lg shadow-sm">
       <div className="text-center mb-16">
         <AnimatedText 
           text={t.heading} 
@@ -80,7 +81,7 @@ const Portfolio = ({
         <FilterButtons filters={filters} activeFilter={activeFilter} setActiveFilter={setActiveFilter} language={language} />
       </div>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl py-0 my-0 px-0 mx-auto md:mx-[40px] rounded-none bg-transparent">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto px-4">
         {filteredProjects.map((project, index) => (
           <motion.div 
             key={project.id} 
@@ -119,7 +120,7 @@ const Portfolio = ({
                   {selectedProject.title}
                 </DialogTitle>
                 <DialogDescription className="text-muted-foreground">
-                  {selectedProject.category}
+                  {selectedProject.categoryDisplay}
                 </DialogDescription>
               </DialogHeader>
               
