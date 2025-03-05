@@ -1,7 +1,24 @@
+
 import { useState } from "react";
 import AnimatedText from "./AnimatedText";
 import AnimatedImage from "./AnimatedImage";
-import { ArrowRight, Download } from "lucide-react";
+import { ArrowRight, Download, X } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+  DialogClose,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { 
+  Tooltip, 
+  TooltipContent, 
+  TooltipProvider, 
+  TooltipTrigger 
+} from "@/components/ui/tooltip";
 
 type DesignPacksProps = {
   language: 'en' | 'ru';
@@ -23,13 +40,39 @@ const DesignPacks = ({ language }: DesignPacksProps) => {
       heading: "Design Packs",
       subheading: "Premium design resources created for professional designers",
       buyNow: "Buy Now",
-      viewDetails: "View Details"
+      viewDetails: "View Details",
+      buyTitle: "Complete Your Purchase",
+      buyDescription: "Fill in your details to purchase this design pack",
+      detailsTitle: "Pack Details",
+      name: "Full Name",
+      email: "Email Address",
+      cardNumber: "Card Number",
+      expiryDate: "Expiry Date",
+      cvv: "CVV",
+      submit: "Complete Purchase",
+      cancel: "Cancel",
+      close: "Close",
+      included: "What's Included",
+      downloadInfo: "After purchasing, you'll receive a download link via email"
     },
     ru: {
       heading: "Дизайн-Паки",
       subheading: "Премиальные дизайн-ресурсы, созданные для профессиональных дизайнеров",
       buyNow: "Купить Сейчас",
-      viewDetails: "Посмотреть Детали"
+      viewDetails: "Посмотреть Детали",
+      buyTitle: "Завершите Покупку",
+      buyDescription: "Заполните ваши данные для покупки этого дизайн-пака",
+      detailsTitle: "Детали Пакета",
+      name: "Полное Имя",
+      email: "Адрес Электронной Почты",
+      cardNumber: "Номер Карты",
+      expiryDate: "Срок Действия",
+      cvv: "CVV",
+      submit: "Завершить Покупку",
+      cancel: "Отмена",
+      close: "Закрыть",
+      included: "Что Включено",
+      downloadInfo: "После покупки вы получите ссылку для скачивания по электронной почте"
     }
   };
 
@@ -78,6 +121,7 @@ const DesignPacks = ({ language }: DesignPacksProps) => {
   ];
 
   const [hoveredPack, setHoveredPack] = useState<number | null>(null);
+  const [selectedPack, setSelectedPack] = useState<Pack | null>(null);
 
   return (
     <section id="design-packs" className="section-container bg-secondary/30">
@@ -101,7 +145,7 @@ const DesignPacks = ({ language }: DesignPacksProps) => {
         {packs.map((pack, index) => (
           <div
             key={pack.id}
-            className="bg-white dark:bg-black/20 border border-gray-100 dark:border-gray-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500"
+            className="bg-white dark:bg-black/20 border border-gray-100 dark:border-gray-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 group"
             onMouseEnter={() => setHoveredPack(pack.id)}
             onMouseLeave={() => setHoveredPack(null)}
           >
@@ -134,20 +178,195 @@ const DesignPacks = ({ language }: DesignPacksProps) => {
               </ul>
               
               <div className="flex flex-col space-y-3">
-                <a
-                  href={pack.downloadLink}
-                  className="flex justify-center items-center gap-2 bg-primary text-primary-foreground py-2.5 px-4 rounded-lg font-medium transition-colors hover:bg-primary/90"
-                >
-                  <Download className="h-4 w-4" />
-                  <span>{t.buyNow}</span>
-                </a>
-                <a
-                  href="#"
-                  className="text-sm font-medium text-primary inline-flex items-center justify-center gap-1 transition-all duration-300 hover:gap-2"
-                >
-                  <span>{t.viewDetails}</span>
-                  <ArrowRight className="h-4 w-4" />
-                </a>
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Button 
+                      className="flex justify-center items-center gap-2 bg-primary text-primary-foreground py-2.5 px-4 rounded-lg font-medium transition-colors hover:bg-primary/90 w-full"
+                      onClick={() => setSelectedPack(pack)}
+                    >
+                      <Download className="h-4 w-4" />
+                      <span>{t.buyNow}</span>
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="sm:max-w-[425px]">
+                    <DialogHeader>
+                      <DialogTitle>{t.buyTitle}</DialogTitle>
+                      <DialogDescription>{t.buyDescription}</DialogDescription>
+                    </DialogHeader>
+                    <form className="space-y-4 mt-4">
+                      <div className="space-y-2">
+                        <label htmlFor="name" className="text-sm font-medium">{t.name}</label>
+                        <input
+                          id="name"
+                          type="text"
+                          className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <label htmlFor="email" className="text-sm font-medium">{t.email}</label>
+                        <input
+                          id="email"
+                          type="email"
+                          className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <label htmlFor="card" className="text-sm font-medium">{t.cardNumber}</label>
+                        <input
+                          id="card"
+                          type="text"
+                          className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                        />
+                      </div>
+                      <div className="grid grid-cols-2 gap-4">
+                        <div className="space-y-2">
+                          <label htmlFor="expiry" className="text-sm font-medium">{t.expiryDate}</label>
+                          <input
+                            id="expiry"
+                            type="text"
+                            placeholder="MM/YY"
+                            className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                          />
+                        </div>
+                        <div className="space-y-2">
+                          <label htmlFor="cvv" className="text-sm font-medium">{t.cvv}</label>
+                          <input
+                            id="cvv"
+                            type="text"
+                            className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                          />
+                        </div>
+                      </div>
+                      <div className="mt-6 flex justify-end gap-3">
+                        <DialogClose asChild>
+                          <Button type="button" variant="outline">{t.cancel}</Button>
+                        </DialogClose>
+                        <Button type="submit">{t.submit}</Button>
+                      </div>
+                    </form>
+                  </DialogContent>
+                </Dialog>
+                
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <button
+                      onClick={() => setSelectedPack(pack)}
+                      className="text-sm font-medium text-primary inline-flex items-center justify-center gap-1 transition-all duration-300 hover:gap-2"
+                    >
+                      <span>{t.viewDetails}</span>
+                      <ArrowRight className="h-4 w-4" />
+                    </button>
+                  </DialogTrigger>
+                  <DialogContent className="sm:max-w-[525px]">
+                    <DialogHeader>
+                      <DialogTitle className="text-xl">{selectedPack?.title}</DialogTitle>
+                    </DialogHeader>
+                    <div className="mt-4">
+                      <div className="aspect-video w-full overflow-hidden rounded-lg mb-4">
+                        <img 
+                          src={selectedPack?.imageUrl} 
+                          alt={selectedPack?.title} 
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <div className="flex justify-between items-center mb-4">
+                        <h3 className="text-lg font-semibold">{t.included}</h3>
+                        <span className="text-xl font-bold text-primary">{selectedPack?.price}</span>
+                      </div>
+                      <p className="text-muted-foreground mb-4">{selectedPack?.description}</p>
+                      <ul className="space-y-2 mb-6">
+                        {selectedPack?.features.map((feature, i) => (
+                          <li key={i} className="flex items-start">
+                            <svg className="h-5 w-5 text-primary flex-shrink-0 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span>{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
+                      <p className="text-sm text-muted-foreground italic mb-6">{t.downloadInfo}</p>
+                      <div className="flex justify-end gap-3">
+                        <DialogClose asChild>
+                          <Button variant="outline">{t.close}</Button>
+                        </DialogClose>
+                        <Dialog>
+                          <TooltipProvider>
+                            <Tooltip>
+                              <TooltipTrigger asChild>
+                                <DialogTrigger asChild>
+                                  <Button>
+                                    <Download className="h-4 w-4 mr-2" />
+                                    {t.buyNow}
+                                  </Button>
+                                </DialogTrigger>
+                              </TooltipTrigger>
+                              <TooltipContent>
+                                <p>{t.buyNow}</p>
+                              </TooltipContent>
+                            </Tooltip>
+                          </TooltipProvider>
+                          <DialogContent className="sm:max-w-[425px]">
+                            <DialogHeader>
+                              <DialogTitle>{t.buyTitle}</DialogTitle>
+                              <DialogDescription>{t.buyDescription}</DialogDescription>
+                            </DialogHeader>
+                            <form className="space-y-4 mt-4">
+                              <div className="space-y-2">
+                                <label htmlFor="name2" className="text-sm font-medium">{t.name}</label>
+                                <input
+                                  id="name2"
+                                  type="text"
+                                  className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                                />
+                              </div>
+                              <div className="space-y-2">
+                                <label htmlFor="email2" className="text-sm font-medium">{t.email}</label>
+                                <input
+                                  id="email2"
+                                  type="email"
+                                  className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                                />
+                              </div>
+                              <div className="space-y-2">
+                                <label htmlFor="card2" className="text-sm font-medium">{t.cardNumber}</label>
+                                <input
+                                  id="card2"
+                                  type="text"
+                                  className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                                />
+                              </div>
+                              <div className="grid grid-cols-2 gap-4">
+                                <div className="space-y-2">
+                                  <label htmlFor="expiry2" className="text-sm font-medium">{t.expiryDate}</label>
+                                  <input
+                                    id="expiry2"
+                                    type="text"
+                                    placeholder="MM/YY"
+                                    className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                                  />
+                                </div>
+                                <div className="space-y-2">
+                                  <label htmlFor="cvv2" className="text-sm font-medium">{t.cvv}</label>
+                                  <input
+                                    id="cvv2"
+                                    type="text"
+                                    className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                                  />
+                                </div>
+                              </div>
+                              <div className="mt-6 flex justify-end gap-3">
+                                <DialogClose asChild>
+                                  <Button type="button" variant="outline">{t.cancel}</Button>
+                                </DialogClose>
+                                <Button type="submit">{t.submit}</Button>
+                              </div>
+                            </form>
+                          </DialogContent>
+                        </Dialog>
+                      </div>
+                    </div>
+                  </DialogContent>
+                </Dialog>
               </div>
             </div>
           </div>

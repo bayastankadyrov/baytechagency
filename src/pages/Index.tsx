@@ -1,8 +1,6 @@
-
 import { useEffect, useState } from "react";
 import NavBar from "@/components/NavBar";
 import Hero from "@/components/Hero";
-import Portfolio from "@/components/portfolio";
 import Services from "@/components/Services";
 import About from "@/components/About";
 import WhyChooseUs from "@/components/WhyChooseUs";
@@ -11,7 +9,6 @@ import WorkProcess from "@/components/WorkProcess";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import DesignPacks from "@/components/DesignPacks";
-import PaymentSection from "@/components/PaymentSection";
 
 const Index = () => {
   // Add theme state
@@ -126,12 +123,10 @@ const Index = () => {
       />
       <main>
         <Hero language={language} />
-        <Portfolio language={language} />
         <Services language={language} />
         <WhyChooseUs language={language} />
         <DesignPacks language={language} />
         <PackageDiscounts language={language} />
-        <PaymentSection language={language} />
         <WorkProcess language={language} />
         <About language={language} />
         <Contact language={language} />
